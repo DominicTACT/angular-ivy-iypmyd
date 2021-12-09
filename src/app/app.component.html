@@ -1,4 +1,119 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<button (click)="Measurement()">Take measurement</button>
+<button (click)="reports()">See all reports</button>
+<button (click)="reset()">Reset</button>
+
+<br />
+<div [hidden]="showStart">
+  <button class="start" (click)="start()">
+    <svg width="200" height="100">
+      <rect
+        x="0"
+        y="0"
+        rx="20"
+        ry="20"
+        width="200"
+        height="100"
+        stroke="black"
+        stroke-width="3px"
+        fill="lightblue"
+      />
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+        START
+      </text>
+    </svg>
+  </button>
+</div>
+
+<div [hidden]="showStep">
+  <svg width="200" height="100" class="middle">
+    <rect
+      x="0"
+      y="0"
+      rx="20"
+      ry="20"
+      width="200"
+      height="100"
+      stroke="black"
+      stroke-width="3px"
+      fill="yellow"
+    />
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+      Is a measurement available?
+    </text>
+  </svg>
+  <div id="timer">
+</div>
+  <div [hidden]="hold">
+    <button id="btn" class="middle" (click)="notavailable()">No</button>
+    <button id="btn2" class="middle" (click)="available()">Yes</button>
+  </div>
+</div>
+
+<div [hidden]="measurementAvailable">
+  <svg width="200" height="100" class="middle">
+    <rect
+      x="0"
+      y="0"
+      rx="20"
+      ry="20"
+      width="200"
+      height="100"
+      stroke="black"
+      stroke-width="3px"
+      fill="yellow"
+    />
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+      Enter measurement
+    </text>
+  </svg>
+  <input type="number" id="temp" />
+  <div [hidden]="!temptaken" class="middle">
+    <button (click)="measurementsubmitted()">Submit</button>
+  </div>
+</div>
+
+<div [hidden]="temptaken" class="submitted">
+  <div [hidden]="adjust">
+    <svg width="200" height="100" class="middle">
+      <rect
+        x="0"
+        y="0"
+        rx="20"
+        ry="20"
+        width="200"
+        height="100"
+        stroke="black"
+        stroke-width="3px"
+        fill="red"
+      />
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+        Finished/Adjustment Needed
+      </text>
+    </svg>
+  </div>
+  <div [hidden]="done">
+    <svg width="200" height="100" class="middle">
+      <rect
+        x="0"
+        y="0"
+        rx="20"
+        ry="20"
+        width="200"
+        height="100"
+        stroke="black"
+        stroke-width="3px"
+        fill="lime"
+      />
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+        Finished/Success
+      </text>
+    </svg>
+  </div>
+  <div class="submitbutton">
+    <button (click)="submit()">Submit</button>
+  </div>
+</div>
+<div id="myData">
+</div>
+<div id="myReports">
+</div>
