@@ -132,9 +132,9 @@ export class AppComponent {
     this.done = true;
     this.hold = false;
     var data = document.getElementById("MyData");
-    var reports = document.getElementById("reported");
+    var reports = document.getElementById("reported val2");
     data.innerHTML = "";
-    reports.parentNode.parentNode.removeChild(reports.parentNode);
+    reports.parentNode.removeChild(reports);
 
   }
 }
