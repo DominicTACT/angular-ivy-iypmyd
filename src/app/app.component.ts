@@ -15,49 +15,55 @@ export class AppComponent {
   done = true;
   hold = false;
   waittimes = 0;
-  result = ""
+  result = "";
+  Reports = false;
+  Measurements = false;
   
   
   Measurement() {
     this.showStart = false;
+    this.Measurements = true;
   }
   reports() {
+    this.Reports = true;
     var val5 = {
-      val2: 
+      "val2": [
       { 
         "Complete": "True",
-        "Total wait time taken": 1,
+        "Totalwaittimetaken": 1,
         "Temperature": 110,
         "Result" : "No adjustment needed"
-      },
-      val3:
-      { 
-        "Complete": "True",
-        "Total wait time taken": 10,
-        "Temperature": 88,
-        "Result" : "Adjustment needed"
       }
+    ]
     };
-    var mainContainer = document.getElementById("myReports");
-    for (const k in val5)
+    var mainContainer2 = document.getElementById("myReports");
+
+    let k: keyof typeof val5; 
+    for (k in val5)
     {
       var div = document.createElement("button");
-      const v = val5[k];
       div.innerHTML = k;
-      div.id = "reported" + k;
+      div.id = "reported";
       div.onclick = function(event){
-        var mainContainer = document.getElementById("reported" + k);
-        //let j: keyof typeof val5[k]; 
-        for (const j in val5[k])
-        {
-          var div = document.createElement("div");
-          const v = [j];
-          div.innerHTML = k +": " + v;
-          mainContainer.appendChild(div);
-        }
+        var mainContainer = document.getElementById("reported");
+        var div2 = document.createElement("div");
+        val5.val2;
+        val5.val2.forEach(element => {
+          let product = {
+            comp : element.Complete, 
+            waittime : element.Totalwaittimetaken, 
+            temp : element.Temperature,
+            result: element.Result
+          }
+          //console.log(product);
+          div2.innerHTML = "Is complete: " + product.comp + "<br />" + "Seconds waited before measurement: " + product.waittime*30 + "<br />" + "Temperature: " + product.temp + "<br />" + "Action needed: " + product.result;
+          mainContainer.appendChild(div2);      
+      });
+  
       }
-      mainContainer.appendChild(div);
+      mainContainer2.appendChild(div);
     }
+
   }
   start() {
     this.showStep = false;
@@ -104,24 +110,41 @@ export class AppComponent {
   }
   submit() {
     output: JSON;
-    var val = 
+    var val = {
+     "Vals" :[
     { 
       "Complete": "True",
-      "Total wait time taken": this.waittimes*30,
+      "Totalwaittimetaken": this.waittimes*30,
       "Temperature": this.temp,
       "Result" : this.result
-    };
-    var mainContainer = document.getElementById("myData");
-    let k: keyof typeof val; 
-    for (k in val)
-    {
-      var div = document.createElement("div");
-      const v = val[k];
-      div.innerHTML = k +": " + v;
-      mainContainer.appendChild(div);
     }
-  }
+  ]
+};
+    var mainContainer = document.getElementById("myDatas");
 
+    var div = document.createElement("button");
+    div.innerHTML = "SHOW";
+    div.id = "data2";
+    div.onclick = function(event){
+      
+      var mainContainer2 = document.getElementById("data2");
+      
+      var div2 = document.createElement("div");
+      val.Vals.forEach(element => {
+        let product = {
+          comp : element.Complete, 
+          waittime : element.Totalwaittimetaken, 
+          temp : element.Temperature,
+          result: element.Result
+        }
+        //console.log(product);
+        div2.innerHTML = "Is complete: " + product.comp + "<br />" + "Seconds waited before measurement: " + product.waittime*30 + "<br />" + "Temperature: " + product.temp + "<br />" + "Action needed: " + product.result;
+        mainContainer2.appendChild(div2);      
+      });
+    }
+    mainContainer.appendChild(div);
+  }
+  
   reset() {
     this.showStart = true;
     this.showStep = true;
@@ -131,10 +154,14 @@ export class AppComponent {
     this.adjust = true;
     this.done = true;
     this.hold = false;
-    var data = document.getElementById("MyData");
-    var reports = document.getElementById("reported val2");
-    data.innerHTML = "";
-    reports.parentNode.removeChild(reports);
-
+    this.Reports = false;
+    this.Measurements = false;
+    this.result = "";
+    this.waittimes = 0;
+    var clear = document.getElementById("reported");
+    clear.parentNode.removeChild(clear);
+    var clear2 = document.getElementById("data2");
+    clear2.parentNode.removeChild(clear2);
+    //window.location.reload();
   }
 }

@@ -1,5 +1,9 @@
-<button (click)="Measurement()">Take measurement</button>
-<button (click)="reports()">See all reports</button>
+<div [hidden]="Reports">
+  <button (click)="Measurement()">Take measurement</button>
+</div>
+<div [hidden]="Measurements">
+  <button (click)="reports()">See all reports</button>
+</div>
 <button (click)="reset()">Reset</button>
 
 <br />
@@ -66,7 +70,7 @@
       Enter measurement
     </text>
   </svg>
-  <input type="number" id="temp" />
+  <input type="number" id="temp" value="0"/>
   <div [hidden]="!temptaken" class="middle">
     <button (click)="measurementsubmitted()">Submit</button>
   </div>
@@ -113,7 +117,7 @@
     <button (click)="submit()">Submit</button>
   </div>
 </div>
-<div id="myData">
+<div id="myDatas">
 </div>
 <div id="myReports">
 </div>
