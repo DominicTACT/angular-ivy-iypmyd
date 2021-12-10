@@ -154,14 +154,19 @@ export class AppComponent {
     this.adjust = true;
     this.done = true;
     this.hold = false;
-    this.Reports = false;
-    this.Measurements = false;
     this.result = "";
     this.waittimes = 0;
-    var clear = document.getElementById("reported");
-    clear.parentNode.removeChild(clear);
+    if(this.Measurements == true)
+    {
     var clear2 = document.getElementById("data2");
     clear2.parentNode.removeChild(clear2);
+    }
+    else if (this.Reports == true){
+    var clear = document.getElementById("reported");
+    clear.parentNode.removeChild(clear);
+    }
     //window.location.reload();
+    this.Reports = false;
+    this.Measurements = false;
   }
 }
