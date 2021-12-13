@@ -120,16 +120,11 @@ export class AppComponent {
     }
   ]
 };
-    var mainContainer = document.getElementById("myDatas");
+    var mainContainer2 = document.getElementById("myDatas");
 
-    var div = document.createElement("button");
-    div.innerHTML = "SHOW";
-    div.id = "data2";
-    div.onclick = function(event){
-      
-      var mainContainer2 = document.getElementById("data2");
-      
+      mainContainer2.innerHTML = "";
       var div2 = document.createElement("div");
+      div2.id="data2";
       val.Vals.forEach(element => {
         let product = {
           comp : element.Complete, 
@@ -142,8 +137,6 @@ export class AppComponent {
         mainContainer2.appendChild(div2);      
       });
     }
-    mainContainer.appendChild(div);
-  }
   
   reset() {
     this.showStart = true;
