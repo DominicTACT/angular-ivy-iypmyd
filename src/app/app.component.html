@@ -1,7 +1,7 @@
-<div [hidden]="Reports">
+<div [hidden]="Reports || Measurements">
   <button (click)="Measurement()">Take measurement</button>
 </div>
-<div [hidden]="Measurements">
+<div [hidden]="Measurements || Reports">
   <button (click)="reports()">See all reports</button>
 </div>
 <button (click)="reset()">Reset</button>

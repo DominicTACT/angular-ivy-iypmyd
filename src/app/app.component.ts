@@ -18,6 +18,7 @@ export class AppComponent {
   result = "";
   Reports = false;
   Measurements = false;
+  MeasurementsDone = false;
   
   
   Measurement() {
@@ -46,7 +47,9 @@ export class AppComponent {
       div.id = "reported";
       div.onclick = function(event){
         var mainContainer = document.getElementById("reported");
+        mainContainer.innerHTML = "";
         var div2 = document.createElement("div");
+        div2.id="tempreport";
         val5.val2;
         val5.val2.forEach(element => {
           let product = {
@@ -56,8 +59,8 @@ export class AppComponent {
             result: element.Result
           }
           //console.log(product);
-          div2.innerHTML = "Is complete: " + product.comp + "<br />" + "Seconds waited before measurement: " + product.waittime*30 + "<br />" + "Temperature: " + product.temp + "<br />" + "Action needed: " + product.result;
-          mainContainer.appendChild(div2);      
+          div2.innerHTML = k + "<br />" + "Is complete: " + product.comp + "<br />" + "Seconds waited before measurement: " + product.waittime*30 + "<br />" + "Temperature: " + product.temp + "<br />" + "Action needed: " + product.result;
+          mainContainer.appendChild(div2);     
       });
   
       }
@@ -121,7 +124,7 @@ export class AppComponent {
   ]
 };
     var mainContainer2 = document.getElementById("myDatas");
-
+      this.MeasurementsDone = true;
       mainContainer2.innerHTML = "";
       var div2 = document.createElement("div");
       div2.id="data2";
@@ -149,7 +152,7 @@ export class AppComponent {
     this.hold = false;
     this.result = "";
     this.waittimes = 0;
-    if(this.Measurements == true)
+    if(this.MeasurementsDone == true)
     {
     var clear2 = document.getElementById("data2");
     clear2.parentNode.removeChild(clear2);
@@ -161,5 +164,6 @@ export class AppComponent {
     //window.location.reload();
     this.Reports = false;
     this.Measurements = false;
+    this.MeasurementsDone = false;
   }
 }
