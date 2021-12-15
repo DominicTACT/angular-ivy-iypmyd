@@ -1,0 +1,10 @@
+.middle {
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
+.SVGline {
+  /*  What color line do we want, to connect each of our circular employee image photos ? */
+  stroke: rgb(0, 0, 0);
+  stroke-width: 3;
+}

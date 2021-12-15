@@ -6,6 +6,7 @@ import { Component, VERSION } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  /*
   showStart = true;
   showStep = true;
   measurementAvailable = true;
@@ -166,4 +167,5 @@ export class AppComponent {
     this.Measurements = false;
     this.MeasurementsDone = false;
   }
+  */
 }
