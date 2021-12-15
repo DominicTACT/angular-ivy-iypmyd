@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { blocks } from '../steps.default'
 
 @Component({
   selector: 'app-rect',
@@ -7,12 +6,6 @@ import { blocks } from '../steps.default'
   styleUrls: ['./rect.components.css'],
 })
 export class RectComponent {
-
-
-
-  blocks2 = blocks;
-
-
   instructions2: any[] = [
     {
       object: 0,
@@ -63,7 +56,6 @@ export class RectComponent {
       color: 'red',
       text: 'Report',
       input: '',
-
     },
     {
       object: 5,
@@ -84,7 +76,9 @@ export class RectComponent {
       offsety1: 100,
       offsetx2: 80,
       offsety2: -3,
-      text:''
+      text: '',
+      textx: 0,
+      texty: 0,
     },
     {
       object1: 1,
@@ -93,7 +87,9 @@ export class RectComponent {
       offsety1: 100,
       offsetx2: 55,
       offsety2: -2,
-      text:'yes'
+      text: 'yes',
+      textx: 75,
+      texty: 300,
     },
     {
       object1: 1,
@@ -102,7 +98,9 @@ export class RectComponent {
       offsety1: 100,
       offsetx2: 60,
       offsety2: -2,
-      text:'no'
+      text: 'no',
+      textx: 210,
+      texty: 300,
     },
     {
       object1: 2,
@@ -111,7 +109,9 @@ export class RectComponent {
       offsety1: 100,
       offsetx2: 28,
       offsety2: -2,
-      text:''
+      text: '',
+      textx: 0,
+      texty: 0,
     },
     {
       object1: 3,
@@ -120,7 +120,9 @@ export class RectComponent {
       offsety1: 40,
       offsetx2: 28,
       offsety2: 100,
-      text:''
+      text: '',
+      textx: 0,
+      texty: 0,
     },
     {
       object1: 5,
@@ -129,20 +131,22 @@ export class RectComponent {
       offsety1: 0,
       offsetx2: 165,
       offsety2: 50,
-      text:''
+      text: '',
+      textx: 0,
+      texty: 0,
     },
   ];
 
-  public getcoordsx(id){
-    const xcoord = this.instructions2.filter(step => {
+  public getcoordsx(id) {
+    const xcoord = this.instructions2.filter((step) => {
       return step.object === id;
-    } );
+    });
     return xcoord[0].xcoord;
   }
-  public getcoordsy(id){
-    const ycoord = this.instructions2.filter(step => {
+  public getcoordsy(id) {
+    const ycoord = this.instructions2.filter((step) => {
       return step.object === id;
-    } );
+    });
     return ycoord[0].ycoord;
   }
 }

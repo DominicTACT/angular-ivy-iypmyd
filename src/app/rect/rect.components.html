@@ -31,8 +31,8 @@
       ></line>
       <text
         *ngIf="connection.text !== ''"
-        [attr.x]="getcoordsx(connection.object2)+44"
-        [attr.y]="getcoordsy(connection.object2)-50"
+        [attr.x]="connection.textx"
+        [attr.y]="connection.texty"
       >
         {{connection.text}}
       </text>
