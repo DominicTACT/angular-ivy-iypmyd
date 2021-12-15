@@ -11,6 +11,7 @@
         [attr.height]="person.height"
         [attr.fill]="person.color"
         style="stroke: black; stroke-width: 5; opacity: 0.5"
+        (click)="setup()"
       />
       <text
         [attr.x]="person.xcoord+5"

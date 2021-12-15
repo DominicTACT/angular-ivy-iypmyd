@@ -15,7 +15,7 @@ export class RectComponent {
       height: 100,
       color: 'red',
       text: 'Start',
-      input: '',
+      input: 'setup()',
     },
     {
       object: 1,
@@ -148,5 +148,9 @@ export class RectComponent {
       return step.object === id;
     });
     return ycoord[0].ycoord;
+  }
+
+  public setup() {
+    console.log(3);
   }
 }
