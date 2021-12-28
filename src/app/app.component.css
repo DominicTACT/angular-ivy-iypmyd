@@ -1,3 +1,27 @@
 p {
   font-family: Lato;
 }
+button {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.middle {
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+.measure{
+  margin-top: 1rem;
+}
+input{
+  margin-right: 1rem;
+}
+
+.submitted{
+  margin-top: 1rem;
+}
+
+.submitbutton{
+  margin-top: 2rem;
+}

@@ -1,0 +1,42 @@
+<h2>Blocks</h2>
+<ul>
+  <svg width="400" height="1000">
+    <g *ngFor="let person of frames; let i = index">
+      <rect
+        [attr.x]="person.xcoord"
+        [attr.y]="person.ycoord"
+        rx="20"
+        ry="20"
+        [attr.width]="person.width"
+        [attr.height]="person.height"
+        [attr.fill]="person.color"
+        style="stroke: black; stroke-width: 5; opacity: 0.5"
+        (click)="prompter(person.input,person.default_resp,person.object)"
+      />
+      <text
+        [attr.x]="person.xcoord+5"
+        [attr.y]="person.ycoord+50"
+        dominant-baseline="middle"
+        text-anchor="right"
+      >
+        {{person.text}}
+      </text>
+    </g>
+    <g *ngFor="let connection of connections">
+      <line
+        class="SVGline"
+        [attr.x1]="getcoordsx(connection.object1)+connection.offsetx1"
+        [attr.y1]="getcoordsy(connection.object1)+connection.offsety1"
+        [attr.x2]="getcoordsx(connection.object2)+connection.offsetx2"
+        [attr.y2]="getcoordsy(connection.object2)+connection.offsety2"
+      ></line>
+      <text
+        *ngIf="connection.text !== ''"
+        [attr.x]="connection.textx"
+        [attr.y]="connection.texty"
+      >
+        {{connection.text}}
+      </text>
+    </g>
+  </svg>
+</ul>
