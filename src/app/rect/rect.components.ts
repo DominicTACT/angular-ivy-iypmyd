@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./rect.components.css'],
 })
 export class RectComponent {
-  instructions2: any[] = [
+  frames: any[] = [
     {
       object: 0,
       xcoord: 70,
@@ -15,7 +15,8 @@ export class RectComponent {
       height: 100,
       color: 'red',
       text: 'Start',
-      input: 'setup()',
+      input: '',
+      default_resp: '',
     },
     {
       object: 1,
@@ -25,7 +26,8 @@ export class RectComponent {
       height: 100,
       color: 'lightblue',
       text: 'Measurement available?',
-      input: '',
+      input: 'Is a Measurement available?',
+      default_resp: 'Yes',
     },
     {
       object: 2,
@@ -35,7 +37,8 @@ export class RectComponent {
       height: 100,
       color: 'lime',
       text: 'Take measurement',
-      input: '',
+      input: 'Input Temperature',
+      default_resp: '',
     },
     {
       object: 3,
@@ -44,8 +47,9 @@ export class RectComponent {
       width: 113,
       height: 100,
       color: 'yellow',
-      text: 'Wait 30 seconds',
-      input: '',
+      text: 'Wait 5 seconds',
+      input: 'WAIT',
+      default_resp: '',
     },
     {
       object: 4,
@@ -56,6 +60,7 @@ export class RectComponent {
       color: 'red',
       text: 'Report',
       input: '',
+      default_resp: '',
     },
     {
       object: 5,
@@ -66,6 +71,7 @@ export class RectComponent {
       color: 'yellow',
       text: 'Retry',
       input: '',
+      default_resp: '',
     },
   ];
   connections: any[] = [
@@ -138,19 +144,47 @@ export class RectComponent {
   ];
 
   public getcoordsx(id) {
-    const xcoord = this.instructions2.filter((step) => {
+    const xcoord = this.frames.filter((step) => {
       return step.object === id;
     });
     return xcoord[0].xcoord;
   }
   public getcoordsy(id) {
-    const ycoord = this.instructions2.filter((step) => {
+    const ycoord = this.frames.filter((step) => {
       return step.object === id;
     });
     return ycoord[0].ycoord;
   }
 
-  public setup() {
-    console.log(3);
+  async prompter(input, default_response, block) {
+    switch (block) {
+      case 1: {
+        var answer = prompt(input, default_response);
+        this.frames[1].text = answer;
+        break;
+      }
+
+      case 2: {
+        var answer = prompt(input);
+
+        this.frames[2].text = 'Reported: ' + answer;
+
+        break;
+      }
+      case 3: {
+        var thousandms = 5;
+        while (thousandms !== 0) {
+          await new Promise((f) => setTimeout(f, 1000));
+          this.frames[3].text = 'Wait ' + thousandms + ' seconds.';
+          thousandms = thousandms - 1;
+        }
+        await new Promise((f) => setTimeout(f, 1000));
+        this.frames[3].text = 'Retry';
+        break;
+      }
+      case 4: {
+        break;
+      }
+    }
   }
 }
